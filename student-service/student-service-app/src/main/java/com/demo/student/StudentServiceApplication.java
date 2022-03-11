@@ -34,7 +34,7 @@ public class StudentServiceApplication {
 		return args -> {
 			List<Student> students = studentRepository.findAll();
 			if (students.size() == 0) {
-				LOGGER.info("Inserting Student data to DB");
+				LOGGER.info("Inserting Student data to Database");
 				studentRepository.saveAll(HelperUtil.studentDataSupplier.get());
 			} else {
 				LOGGER.info("Student data stored in total:: {} and Data :: {}",students.size(), students);
