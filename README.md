@@ -165,7 +165,7 @@ Create an Application name called **Git_Application** with _compute platform_ **
 ![image](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/hciskx6rrwq0r4m3whw6.png)
 
 ***
-Once Application Created, Create a _Deployment Group_ and name **development_gropup**. Get the *Role ARN* from [CodeDeploy_Role](#codedeploy_role), which we created before and put in the service role.
+Once Application Created, Create a _Deployment Group_ and name **development_group**. Get the *Role ARN* from [CodeDeploy_Role](#codedeploy_role), which we created before and put in the service role.
 > [GitHub Action](#github-action-code) will use the deployment Group name.
 
 Choose **In-place** _Deployment type_. Select _Amazon Ec2 Instances_ environment configuration and Tag key **development** to create AWS EC2 instance.
@@ -242,7 +242,7 @@ GitHub repository changes will trigger [GitHub Action](https://docs.github.com/e
 > The continuous-integration job will compile the code and run the JUnit Test cases.
 > The continuous-deployment job will call AWS CodeDeploy Service -
 >> application - **Git_Application**
->> deployment-group - **development_gropup**
+>> deployment-group - **development_group**
  
 Paste below YAML in action configuration and commit.
 <a name="github-action-code"/> 
@@ -286,7 +286,7 @@ jobs:
         run: |
           aws deploy create-deployment \
             --application-name Git_Application \
-            --deployment-group-name development_gropup \
+            --deployment-group-name development_group \
             --deployment-config-name CodeDeployDefault.OneAtATime \
             --github-location repository=${{ github.repository }},commitId=${{ github.sha }}
 ```
